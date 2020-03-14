@@ -31,7 +31,9 @@ class _CityState extends State<City> {
       body: Container(
         child: Column(
           children: <Widget>[
-            
+            TextField(
+              keyboardType: TextInputType.number,
+            ),
             DropdownButton<String>(
               items: _currencies.map((String dropDownStringItem) {
                 return DropdownMenuItem<String>(
