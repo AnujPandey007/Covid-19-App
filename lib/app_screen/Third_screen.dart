@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatefulWidget {
+class ThirdScreen extends StatefulWidget {
   @override
-  _SecondScreenState createState() => _SecondScreenState();
+  _ThirdScreenState createState() => _ThirdScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _ThirdScreenState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -60,10 +60,10 @@ class _SecondScreenState extends State<SecondScreen> {
                     ),
                     Positioned(
                       top: 210.0,
-                      left: 130.0,
+                      left: 120.0,
                       child: Container(
                         child: Text(
-                          "Sign Up",
+                          "Recovery",
                           style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.w800,
@@ -98,20 +98,6 @@ class _SecondScreenState extends State<SecondScreen> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             decoration: InputDecoration(
-                              hintText: "User Name",
-                              hintStyle: TextStyle(
-                                fontSize: 13.0,                                        
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey[500],                    
-                              ),
-                              border: InputBorder.none
-                            ),
-                           ), 
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: TextField(
-                            decoration: InputDecoration(
                               hintText: "Email",
                               hintStyle: TextStyle(
                                 fontSize: 13.0,                                        
@@ -127,22 +113,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           child: TextField(
                             obscureText: true,
                             decoration: InputDecoration(
-                              hintText: "Password",
-                              hintStyle: TextStyle(
-                                fontSize: 13.0,                                        
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey[500],                    
-                              ),
-                              border: InputBorder.none
-                            ),
-                           ), 
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              hintText: "Confirm Password",
+                              hintText: "Last Password Remember",
                               hintStyle: TextStyle(
                                 fontSize: 13.0,                                        
                                 fontWeight: FontWeight.w400,
@@ -179,7 +150,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           Positioned(
                             child: MaterialButton(
                                     onPressed: () {},
-                                    child: Text("Sign Up",style: TextStyle(color: Colors.white),),
+                                    child: Text("Proceed",style: TextStyle(color: Colors.white),),
                                     color: Colors.transparent,
                                     elevation: 0.0,
                                     highlightElevation: 0.0,

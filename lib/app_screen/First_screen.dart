@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/app_screen/Second_screen.dart';
+
 
 class FirstScreen extends StatefulWidget {
   @override
@@ -12,79 +12,128 @@ class _FirstScreenState extends State<FirstScreen> {
     return Scaffold(
       drawer: Drawer(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text(
-                "Anuj"
-              ),
-              accountEmail: Text(
-                "panuj330@gmail.com"
-              ),
-              currentAccountPicture: CircleAvatar(
-                child: Text(
-                  "A",
-                ),
-                backgroundColor: Colors.white,
-              ),
-              onDetailsPressed: () {
-                print("Anuj");
-              },
-              otherAccountsPictures: <Widget>[
-                CircleAvatar(
-                child: Text(
-                  "B",
-                ),
-                backgroundColor: Colors.white,
-              ),
-              ],
-            ),
-            ListTile(
-              title: FlatButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/first");
-                },
-                child: Text(
-                  "Account",
-                  style: TextStyle(
-                    fontSize: 20.0
+            Container(
+              child: Column(
+                children: <Widget>[
+                  UserAccountsDrawerHeader(
+                    accountName: Text(
+                      "Anuj"
+                    ),
+                    accountEmail: Text(
+                      "panuj330@gmail.com"
+                    ),
+                    currentAccountPicture: CircleAvatar(
+                      child: Text(
+                        "A",
+                      ),
+                      backgroundColor: Colors.white,
+                    ),
+                    onDetailsPressed: () {},
+                    otherAccountsPictures: <Widget>[
+                      CircleAvatar(
+                      child: Text(
+                        "B",
+                      ),
+                      backgroundColor: Colors.white,
+                    ),
+                    ],
                   ),
-                ),
+                ],
               )
             ),
-            Divider(),
             ListTile(
               leading: Icon(Icons.account_circle,),
               title: Text(
-                "Account Details"
+                "Profile"
               ),
-              trailing: Icon(Icons.add_a_photo),
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=> SecondScreen(),
-                )
-                );
-              },
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.search,),
+              title: Text(
+                "Search"
+              ),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications,),
+              title: Text(
+                "Notification"
+              ),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.watch_later,),
+              title: Text(
+                "Recent"
+              ),
+              onTap: (){},
+            ),
+             ListTile(
+              leading: Icon(Icons.settings,),
+              title: Text(
+                "Settings"
+              ),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.lock,),
+              title: Text(
+                "Log Out"
+              ),
+              onTap: (){},
             ),
             Divider(),
-            Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: ListTile(
-                leading: Icon(Icons.bug_report,),
-                title: Text(
-                "Bug Report",
-                ),
+            ListTile(
+              leading: Icon(Icons.bug_report,),
+              title: Text(
+                "Bug Report"
               ),
+              trailing: Icon(Icons.add_a_photo),
+              onTap: (){},
             ),
-            ),
+            ListTile(
+                  leading: Icon(Icons.phone),
+                  title: Text(
+                    "Contact Us"
+                  ),
+                  onTap: (){},
+                ),
+                ListTile(
+                  leading: Icon(Icons.star),
+                  title: Text(
+                    "Rate Us"
+                  ),
+                  onTap: (){},
+                ),
+                ListTile(
+                  leading: Icon(Icons.adb),
+                  title: Text(
+                    "About App"
+                  ),
+                  onTap: (){},
+                ),
           ],
         )
       ),
       appBar: AppBar(
-        title: Text(
-          "Main Screen"
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(143, 148, 251, 1),Color.fromRGBO(143, 120, 251, 0.5)
+              ]
+            )
+          ),
         ),
+        title: Text(
+            "Home",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w400
+            ),
+          ),
       ),
       body: Center(
         child: Column(
@@ -98,27 +147,13 @@ class _FirstScreenState extends State<FirstScreen> {
                 fontWeight: FontWeight.w100
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/home");
-                },
-                elevation: 10.0,
-                highlightColor: Colors.orange,
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Text(
-                  "Home Page",
-                  style: TextStyle(
-                    fontSize: 20.0
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),    
     );
   }
 }
+
+
+
+

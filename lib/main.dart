@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import './app_screen/First_screen.dart';
-import './app_screen/Home_screen.dart';
+import 'package:hello_world/practice.dart';
+import './chat/screens/Wrapper.dart';
+import './chat/screens/home/Home.dart';
+import './app_screen/Login.dart';
+import './Calculator/Calculator.dart';
 
-void main() => runApp(Myapp2());
+void main() => runApp(App());
 
 
-
-
-
+class Myapp3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Wrapper()
+    );
+  }
+}
 
