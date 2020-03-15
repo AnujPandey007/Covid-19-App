@@ -12,11 +12,9 @@ class _SigninState extends State<Signin> {
 
   final AuthService _auth = AuthService();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
@@ -34,7 +32,7 @@ class _SigninState extends State<Signin> {
             }
             else {
               print("Successful Signed in");
-              print(result);
+              print(result.uid);
             }
           },
           child: Text(

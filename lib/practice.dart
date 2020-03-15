@@ -13,6 +13,7 @@ class App extends StatelessWidget {
   }
 }
 
+
 class City extends StatefulWidget {
   @override
   _CityState createState() => _CityState();
@@ -31,6 +32,12 @@ class _CityState extends State<City> {
       body: Container(
         child: Column(
           children: <Widget>[
+            RaisedButton.icon(
+              onPressed: () {}, 
+              icon: Icon(Icons.add_alarm), 
+              label: Text("a"),
+              color: Colors.amber,
+              ),
             TextField(
               keyboardType: TextInputType.number,
             ),
