@@ -4,17 +4,16 @@ import 'package:hello_world/chat/shared/constants.dart';
 import 'package:hello_world/chat/shared/loading.dart';
 
 
-
-class Signin extends StatefulWidget {
+class Register extends StatefulWidget {
 
   final Function toggleV;
-  Signin({this.toggleV});
+  Register({this.toggleV});
 
   @override
-  _SigninState createState() => _SigninState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SigninState extends State<Signin> {
+class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
@@ -32,14 +31,14 @@ class _SigninState extends State<Signin> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "SignIn"
+          "Register/SignUp"
         ),
         actions: <Widget>[
           FlatButton.icon(onPressed: () {
             widget.toggleV();
           }, 
           icon: Icon(Icons.person), 
-          label: Text("Register")
+          label: Text("SignIn")
           ),
         ],
       ),
@@ -69,7 +68,7 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.pink,
-                child: Text("SignIn",
+                child: Text("Register",
                 style: TextStyle(
                   color: Colors.white
                 ),
@@ -79,11 +78,11 @@ class _SigninState extends State<Signin> {
                     setState(() {
                       loading = true;
                     });
-                    dynamic result = await _auth.signinWithEmailAndPassword(email, password);
-                    if (result == null)
+                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                    if (result ==null)
                     {
                       setState(() {
-                        error = "Could Not SignIn";
+                        error = "Please supply a vaild email";
                         loading = false;
                       });
                     }
