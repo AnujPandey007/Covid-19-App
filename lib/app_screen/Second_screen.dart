@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatefulWidget {
+class SecondScreen extends StatefulWidget { 
   @override
   _SecondScreenState createState() => _SecondScreenState();
 }

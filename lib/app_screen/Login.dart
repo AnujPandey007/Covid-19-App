@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'FadeAnimation.dart';
 import 'First_screen.dart';
 import 'Second_screen.dart';
 import 'Third_screen.dart';
@@ -26,7 +27,7 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
+ 
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -50,40 +51,40 @@ class _HomePageState extends State<HomePage> {
                       left: 20.0,
                       top: 30.0,
                       height: 190.0,
-                      child: Container(
+                      child:FadeAnimation(0.3, Container(
                         child: Row(
                           children: <Widget>[
                             Image.asset("assets/Images/3.png"),
                           ],
                         ),
-                      ),
+                      ),)
                     ),
                     Positioned(
                       left: 170.0,
                       height: 150.0,
-                      child: Container(
+                      child:FadeAnimation(0.6, Container(
                         child: Row(
                           children: <Widget>[
                             Image.asset("assets/Images/4.png"),
                           ],
                         ),
-                      ),
+                      ),)
                     ),
                     Positioned(
                       right: 40.0,
                       top: 30.0,
-                      child: Container(
+                      child:FadeAnimation(1, Container(
                         child: Row(
                           children: <Widget>[
                             Image.asset("assets/Images/4.png"),
                           ],
                         ),
-                      ),
+                      ),)
                     ),
                     Positioned(
                       top: 210.0,
                       left: 150.0,
-                      child: Container(
+                      child:FadeAnimation(1.3, Container(
                         child: Text(
                           "Login",
                           style: TextStyle(
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                           ) ,
                         ),
-                      ),
+                      ),)
                     ),
                   ],
                 ),
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 8.0),
-                    child: Container(
+                    child: FadeAnimation(1.6, Container(
                     decoration: BoxDecoration(
                       border: Border(),
                       borderRadius: BorderRadius.circular(15.0),
@@ -147,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                  ), 
+                  ), )
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -169,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.0,vertical: 25.0),
-                    child: Container(
+                    child:FadeAnimation(2, Container(
                       height: 50.0,
                       width: 320.0,
                       decoration: BoxDecoration(
@@ -207,30 +208,34 @@ class _HomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                    ),
+                    ),)
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        "New Account?",
-                        style: TextStyle(
-                          color: Colors.grey
-                        ),
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/second");
-                        },
+                      FadeAnimation(2.3, Container(
                         child: Text(
-                          "Sign Up",
+                          "New Account?",
                           style: TextStyle(
-                          color: Color.fromRGBO(143, 148, 251, 1)
+                            color: Colors.grey
                           ),
                         ),
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                      ),
+                      ),),
+                      FadeAnimation(2.6, Container(
+                        child: FlatButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/second");
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                            color: Color.fromRGBO(143, 148, 251, 1)
+                            ),
+                          ),
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                        ),
+                      ),)
                     ],
                   )
                 ],
