@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/chat/services/auth.dart';
 import 'package:hello_world/chat/shared/constants.dart';
-import 'package:hello_world/chat/shared/loading.dart';
+import 'package:hello_world/chat/shared/loading.dart'; 
 
 
 class Register extends StatefulWidget {

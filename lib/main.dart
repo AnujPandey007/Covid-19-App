@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import './chat/models/user.dart';
 
 void main() => runApp(Myapp3());
-  
 
 class Myapp3 extends StatelessWidget {
   @override

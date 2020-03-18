@@ -21,46 +21,67 @@ class City extends StatefulWidget {
 
 class _CityState extends State<City> {
 
-  var _currencies = ["Rupees","Dollars","Pounds","Others"];
-  var _currentitemSelected = "Rupees";
+  String name = "Anuj";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          changetext();
+        },
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(
+        brightness: Brightness.dark,
         title: Text("City"),
       ),
       body: Container(
-        child: Column(
+        child:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton.icon(
-              onPressed: () {}, 
-              icon: Icon(Icons.add_alarm), 
-              label: Text("a"),
-              color: Colors.amber,
+            Center(
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontSize: 20.0
+                ),
               ),
-            TextField(
-              keyboardType: TextInputType.number,
             ),
-            DropdownButton<String>(
-              items: _currencies.map((String dropDownStringItem) {
-                return DropdownMenuItem<String>(
-                  value: dropDownStringItem,
-                  child: Text(dropDownStringItem),
-                );
-              }
-              ).toList(),
-              onChanged: (String newValueSelected) {
-                setState(() {
-                  _currentitemSelected = newValueSelected;
-                });
+            Container(
+              color: Colors.red,
+              height: 100.0,
+              width: 100.0,
+            ),
+             RaisedButton(
+              onPressed: () {
+                changecolor();
               },
-              value: _currentitemSelected,
+              child: Text("Change Color"), 
             ),
           ],
-        ),
+        )
       ),
     );
   }
+
+  void changecolor() {
+
+    setState(() {
+      
+
+    });
+  }
+
+  void changetext() {
+    setState(() {
+      if(name.startsWith("A"))
+      name = "Pandey";
+      else
+      name = "Anuj";
+    });
+  }
+
 }
 
 
