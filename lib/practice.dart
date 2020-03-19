@@ -1,40 +1,28 @@
-void main () {
+void main() {
 
-  // 1st way
-
-  Function addTwoNumbers = (int a,int b) {
-                             var sum = a+b;
-                             print(sum);
-                           };
-
-  var multiplyByFour = (int number) {
-
-    return number*4;
-  };
-
-  //2nd way
-
+  //Example 1: Passing Function to higher order function
   Function addNumbers = (int a,int b) => print(a+b);
+  someOtherFunction("anuj", addNumbers);
 
-  var multiplyFour = (int number) => number*4;
-  
-  //Calling lambda function(A Function which does not have any name)
-
-  addMyNumbers(5, 3);
-  print(multiplyByFour(5));
-
-  addNumbers(4,2);
-  print(multiplyFour(2));
+  //Example 2: Receiving Function from higher order function
+  var myFun = taskToPerform();
+  print(myFun(4));
 
 }
 
-//Normal Function
+//Higher Order Function:--
 
-void addMyNumbers(int a,int b){
 
-  var sum = a+b;
-  print(sum);
+//Example one: Accepts Function as parameters
+void someOtherFunction(String message, Function myFunction) {         //Higher Order Function
+  print(message);
+  print(myFunction(2,4));
 
 }
 
+//Example two: Returns a Function
+Function taskToPerform() {                                              //Higher Order Function
 
+  Function multiplyFour = (int number) => number*4;
+  return multiplyFour;
+}
