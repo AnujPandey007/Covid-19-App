@@ -1,86 +1,39 @@
-import 'package:flutter/material.dart';
+void main () {
 
-class App extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Exp",
-      theme: ThemeData(
-        primaryColor: Colors.blue
-      ),
-      home: City(),
-    );
-  }
+  // 1st way
+
+  Function addTwoNumbers = (int a,int b) {
+                             var sum = a+b;
+                             print(sum);
+                           };
+
+  var multiplyByFour = (int number) {
+
+    return number*4;
+  };
+
+  //2nd way
+
+  Function addNumbers = (int a,int b) => print(a+b);
+
+  var multiplyFour = (int number) => number*4;
+  
+  //Calling lambda function(A Function which does not have any name)
+
+  addMyNumbers(5, 3);
+  print(multiplyByFour(5));
+
+  addNumbers(4,2);
+  print(multiplyFour(2));
+
 }
 
+//Normal Function
 
-class City extends StatefulWidget {
-  @override
-  _CityState createState() => _CityState();
-}
+void addMyNumbers(int a,int b){
 
-class _CityState extends State<City> {
-
-  String name = "Anuj";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          changetext();
-        },
-        child: Icon(Icons.add),
-      ),
-      appBar: AppBar(
-        brightness: Brightness.dark,
-        title: Text("City"),
-      ),
-      body: Container(
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Text(
-                name,
-                style: TextStyle(
-                  fontSize: 20.0
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.red,
-              height: 100.0,
-              width: 100.0,
-            ),
-             RaisedButton(
-              onPressed: () {
-                changecolor();
-              },
-              child: Text("Change Color"), 
-            ),
-          ],
-        )
-      ),
-    );
-  }
-
-  void changecolor() {
-
-    setState(() {
-      
-
-    });
-  }
-
-  void changetext() {
-    setState(() {
-      if(name.startsWith("A"))
-      name = "Pandey";
-      else
-      name = "Anuj";
-    });
-  }
+  var sum = a+b;
+  print(sum);
 
 }
 
