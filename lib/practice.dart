@@ -1,33 +1,42 @@
-void main() {
-  String message="Dart";
-  print(message);
+void main(){
 
-  Function showMessage = () {
-    message = "Dart is awesome";
-    print(message);
-  };
+List<int> numberList = List(5);  // List is of integer and can store 5 elements
+numberList[0]= 73;                   // List is nothing but array
+numberList[1]= 64;
+numberList[3]= 21;
+numberList[4]= 12;   
 
-  showMessage();
 
-  Function talk = () {
-    String msg = "Hi";
-    print(msg);
+numberList[0]= 99;                    // Value changed from 73 to 99
+numberList[1]= null;                  //Value changed from 64 to null
 
-    Function say = (){
-      msg = "hello";
-      print(msg);
-    };
 
-    return say;
+print(numberList[0]);
+print(numberList[1]);
 
-  };
+print("\n");
 
-  
+for(int element in numberList){         //Printing value from for-each loop
 
-  var speak = talk();
-  speak();
-  
+  print(element);
 }
 
+print("\n");
+
+numberList.forEach((int elements)=>print(elements));   //Using Lambda function
+
+
+print("\n");
+
+int i;
+
+for(i=0; i<numberList.length; i++)
+{
+  print(numberList[i]);                       //Using for loop(Using index)
+
+}
+
+
+}
 
 
