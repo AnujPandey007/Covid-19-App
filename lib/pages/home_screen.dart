@@ -10,25 +10,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Map data = {}; // Is same as Map<dynamic, dynamic> data = {}; thus, dynamic is hidden
 
+
   @override
   Widget build(BuildContext context) {
 
-    data = ModalRoute.of(context).settings.arguments;
-    print(data);
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 
-    //set background image
-
-    dynamic images = data["isDayTime"] ? "assets/Images/day.png":"assets/Images/night.png";
-    Color colors = data["isDayTime"] ? Colors.lightBlue:Colors.indigo[800];
+    //set background image and color
+    String images = data['isDayTime'] ? 'assets/Images/day.png' : 'assets/Images/night.png';
+    Color colors = data['isDayTime'] ? Colors.lightBlue:Colors.indigo[800];
 
     return Scaffold(
       backgroundColor: colors,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            image:DecorationImage(
-              image: AssetImage(images),
-              fit: BoxFit.cover
+            image: DecorationImage(
+              image: AssetImage('$images'),
+              fit: BoxFit.cover,
             )
           ),
           child: Padding(
@@ -36,8 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: <Widget>[
                 FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/location");
+                  onPressed: () async{
+                    dynamic result = await Navigator.pushNamed(context, "/location");
+                      setState(() {
+                        data = {                        //Updating all the data at once using map
+                          "location":result["location"],
+                          "flag":result["flag"],
+                          "time":result["time"],
+                          "isDayTime":result["isDayTime"]
+                        };
+                      });
                   }, 
                   icon: Icon(
                     Icons.location_on, 

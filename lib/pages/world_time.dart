@@ -39,7 +39,7 @@ class WorldTime {
     //set the time property
     //time = now.toString();
     //setting day or night
-    isDayTime = now.hour>6 && now.hour<20 ? true:false;     //  6am to 8 pm
+    isDayTime = (now.hour >6 && now.hour <17) ? true : false;     //  6am to 5 pm
     //New format of date and time by intl package
     time = DateFormat.jm().format(now);
 
