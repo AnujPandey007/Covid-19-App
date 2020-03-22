@@ -18,51 +18,38 @@ class HomeP extends StatefulWidget {
 }
 
 class _HomePState extends State<HomeP> {
-  
-  Icon custombutton = Icon(Icons.search);
-  Widget customSearchBar = Text("Search Bar");
 
+
+  Widget portrait(){
+    return Center(
+      child: Text("Portrait"),
+    );
+  }
+
+  Widget landscape(){
+    return Center(
+      child: Text("Landscape"),
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: customSearchBar,
-        actions: <Widget>[
-          IconButton(
-            icon: custombutton, 
-            onPressed: (){
-              setState(() {
-                if(this.custombutton.icon == Icons.search){
-                  this.custombutton = Icon(Icons.cancel);
-                  this.customSearchBar = TextField(
-                    textInputAction: TextInputAction.go,
-                    style: TextStyle(
-                      color: Colors.white
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Search Here",
-                      hintStyle: TextStyle(
-                        color: Colors.white70
-                      )
-                    ),
-                  );
-                }
-                else{
-                  this.custombutton = Icon(Icons.search);
-                  this.customSearchBar = Text("Search Bar");
-                }
-              });
-            },
-          ),
-        ],
-
+        title: Text("Practice"),
       ),
-      body: Center(
-        child: Container(
-          child: Text("Search"),
-        ),
+      body: OrientationBuilder(
+        builder: (context,orientation) {
+          if(orientation==Orientation.portrait){
+            return portrait();
+          }else{
+            return landscape();
+          }
+        },
       ),
     );
   }
+
+  
+
 }
