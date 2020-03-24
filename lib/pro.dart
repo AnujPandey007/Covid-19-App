@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -24,6 +24,16 @@ class Cal extends StatefulWidget {
 class _CalState extends State<Cal> {
   @override
   Widget build(BuildContext context) {
+    
+    void getinfo() async{
+      Response co = await get("https://coronavirus-tracker-api.herokuapp.com/v2/locations");
+      Map corona = jsonDecode(co.body);
+      print(corona["latest"]["confirmed"]);
+      print(corona["locations"][0]["country"]);
+    }
+    
+    getinfo();
+
     return Scaffold(
       backgroundColor: Colors.grey,
       body: FutureBuilder(
@@ -42,7 +52,7 @@ class _CalState extends State<Cal> {
           }else{
             return Center(
               child: Text(
-                mydata[1]["name"],
+                mydata[0]["name"],
                 style: TextStyle(
                   fontSize: 20.0
                 ),
