@@ -21,13 +21,15 @@ class Hom extends StatefulWidget {
 class _HomState extends State<Hom> {
 
   List data;
+  Map bata;
 
   void getinfo() async{
     Response response = await get("https://coronavirus-tracker-api.herokuapp.com/v2/locations");
     //List data = jsonDecode(response.body);
     this.setState(() { 
-      var location = jsonDecode(response.body);
-      data = location["locations"];
+      var corona = jsonDecode(response.body);
+      data = corona["locations"];
+      bata = corona;
     });
   
   }
@@ -45,11 +47,21 @@ class _HomState extends State<Hom> {
       appBar: AppBar(
         title: Text("Listviews"),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemCount: data == null ? 0 : data.length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Text(data[index]["country"]),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(data[index]["id"].toString()),
+              Text(data[index]["country"].toString()),
+            ],
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return ListTile(
+            leading: Text(bata["latest"]["confirmed"].toString()),
           );
         },
       ),
