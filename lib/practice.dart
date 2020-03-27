@@ -23,12 +23,13 @@ class _HomState extends State<Hom> {
   List data;
 
   void getinfo() async{
-    Response response = await get("https://jsonplaceholder.typicode.com/posts");
+    Response response = await get("https://coronavirus-tracker-api.herokuapp.com/v2/locations");
     //List data = jsonDecode(response.body);
     this.setState(() { 
-      data = jsonDecode(response.body);
+      var location = jsonDecode(response.body);
+      data = location["locations"];
     });
-
+  
   }
 
   @override
@@ -48,12 +49,10 @@ class _HomState extends State<Hom> {
         itemCount: data == null ? 0 : data.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: Text(data[index]["title"]),
+            child: Text(data[index]["country"]),
           );
         },
       ),
     );
   }
 }
-
-
