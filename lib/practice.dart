@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/statefull.dart';
-import 'package:hello_world/stateless.dart';
-
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -9,56 +8,52 @@ class Myapp4 extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "QuizApp",
-      home: Homeq(),
+      home: Hom(),
     );
   }
 }
 
-
-class Homeq extends StatefulWidget {
+class Hom extends StatefulWidget {
   @override
-  _HomeqState createState() => _HomeqState();
+  _HomState createState() => _HomState();
 }
 
-class _HomeqState extends State<Homeq> {
+class _HomState extends State<Hom> {
 
-  String val;
+  List data;
+
+  void getinfo() async{
+    Response response = await get("https://jsonplaceholder.typicode.com/posts");
+    //List data = jsonDecode(response.body);
+    this.setState(() { 
+      data = jsonDecode(response.body);
+    });
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getinfo();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Screen"),
+        title: Text("Listviews"),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              onChanged: (text) {
-                val = text;
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20)
-                )
-              ),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> First(val : val)));
-              },
-              child: Text("Switch To First"),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Second(val : val)));
-              },
-              child: Text("Switch To Second"),
-            ),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: data == null ? 0 : data.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: Text(data[index]["title"]),
+          );
+        },
       ),
     );
   }
 }
+
+
