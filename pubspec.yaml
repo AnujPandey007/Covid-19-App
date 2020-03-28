@@ -35,6 +35,7 @@ dependencies:
   intl: ^0.16.1
   numberpicker: ^1.2.0
   introduction_screen: ^1.0.8
+  
 
 dev_dependencies:
   flutter_test:

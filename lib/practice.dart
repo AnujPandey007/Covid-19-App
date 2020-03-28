@@ -1,153 +1,131 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:hello_world/zcorona/home.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Myapp4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes:{
-        "/home":(context)=>Home()
-      },
-      title: "OnBorading",
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen()
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
     );
   }
 }
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
+class Note {
+  String title;
+  String text;
+  
+  Note(this.title, this.text);
+
+  Note.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    text = json['text'];
+  }
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class HomePage extends StatefulWidget {
 
-  int counter = 0;
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-  // Async func to handle Futures easier; or use Future.then
-  got() async { 
-    SharedPreferences prefs = await SharedPreferences.getInstance();  
-    setState(() {
-      counter = prefs.getInt('isfirst') ?? 0;
-    });
-  }
+class _HomePageState extends State<HomePage> {
   
+  List<Note> _notes = List<Note>();
+  List<Note> _notesForDisplay = List<Note>();
+
+  Future<List<Note>> fetchNotes() async {
+    var url = 'https://raw.githubusercontent.com/boriszv/json/master/random_example.json';
+    var response = await http.get(url);
+    
+    var notes = List<Note>();
+    
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+      for (var noteJson in notesJson) {
+        notes.add(Note.fromJson(noteJson));
+      }
+    }
+    return notes;
+  }
 
   @override
   void initState() {
-    super.initState();
-    got();
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) {
-          if(counter == 0)
-            return Poom();
-          else
-            return Home();
-        } 
-      ));
+    fetchNotes().then((value) {
+      setState(() {
+        _notes.addAll(value);
+        _notesForDisplay = _notes;
+      });
     });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Container(
-        child: Center(
-          child: Text(
-            "Quiz\nTest Yourself",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40.0,
-              color: Colors.white
-            ),
-          ),
+      appBar: AppBar(
+        title: Text('Flutter listview with json'),
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return index == 0 ? _searchBar() : _listItem(index-1);
+        },
+        itemCount: _notesForDisplay.length+1,
+      )
+    );
+  }
+
+  _searchBar() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Search...'
         ),
+        onChanged: (text) {
+          text = text.toLowerCase();
+          setState(() {
+            _notesForDisplay = _notes.where((note) {
+              var noteTitle = note.title.toLowerCase();
+              return noteTitle.contains(text);
+            }).toList();
+          });
+        },
       ),
     );
   }
-}
 
-class Poom extends StatefulWidget {
-  @override
-  _PoomState createState() => _PoomState();
-}
-
-class _PoomState extends State<Poom> {
-
-  int counter = 0;
-
-  void nextpage(context) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // set value
-     prefs.setInt('isfirst', 1);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Home()));
-  }
-
-  List<PageViewModel> getPages() {
-    return [
-      PageViewModel(
-        //image: Image.asset("assets/images/online_Ad.png"),
-        title: "Online Ads",
-        body: "This is an online ad.",
-        footer: Text(
-          "MTECHVIRAL",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      PageViewModel(
-        //image: Image.asset("assets/images/online_article.png"),
-        title: "Online Article",
-        body: "This is an online article.",
-        footer: Text(
-          "MTECHVIRAL",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      PageViewModel(
-        //image: Image.asset("assets/images/website.png"),
-        title: "Html & CSS",
-        body: "This is an online course where you can learn html & css",
-        footer: Text(
-          "MTECHVIRAL",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      PageViewModel(
-        //image: Image.asset("assets/images/shared_workspace.png"),
-        title: "Workspace",
-        body: "Want a workspace? Then check it out.",
-        footer: Text(
-          "MTECHVIRAL",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-    ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: IntroductionScreen(
-          globalBackgroundColor: Colors.white,
-          pages: getPages(),
-          done: Text(
-            "Done",
-            style: TextStyle(color: Colors.black),
+  _listItem(index) {
+    return InkWell(
+      onTap: () {
+        print("Tapped");
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 32.0, bottom: 32.0, left: 16.0, right: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                _notesForDisplay[index].title,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              Text(
+                _notesForDisplay[index].text,
+                style: TextStyle(
+                  color: Colors.grey.shade600
+                ),
+              ),
+            ],
           ),
-          onDone: () {
-            return nextpage(context);
-          },
-          showSkipButton: true,
-          skip: const Text("Skip"),
-          onSkip: () {
-            return nextpage(context);
-          },
         ),
       ),
     );
