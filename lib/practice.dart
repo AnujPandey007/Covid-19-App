@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:hello_world/zcorona/home.dart';
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -18,50 +20,31 @@ class Hom extends StatefulWidget {
 
 class _HomState extends State<Hom> {
 
-
-  Future<bool> data () {
-    return showDialog(
-      context: context,
-      builder: (context)=> AlertDialog(
-        title: Text("Do you really want to exit?"),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("Yes"),
-            onPressed: () {
-              Navigator.pop(context,true);
-            },
-          ),
-          FlatButton(
-            child: Text("No"),
-            onPressed: () {
-              Navigator.pop(context,false);  //if its true then it will exit
-            },
-          ),
-        ],
-      )
-    );
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 2), () { //Time Duration i.e., for how much time you want to show the splashscreen
+      Navigator.pushReplacement(context, MaterialPageRoute(   //SplashScreen Main Code
+        builder: (context) => Home(), // Name of the Page that you want to go
+      ));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        return data();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Home"),
-        ),
-        body:Container(
-          alignment: Alignment.center,
-          child: Text(
-            "Hello",
-            style: TextStyle(
-              fontSize: 16.0,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body:Container(
+        alignment: Alignment.center,
+        child: Text(
+          "Hello",
+          style: TextStyle(
+            fontSize: 16.0,
           ),
         ),
-      )
+      ),
     );
   }
 }
