@@ -21,13 +21,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-      ),
       body: Container(
         child: Column(
           children: <Widget>[
-            Container(),
+            Container(
+              child: Text("Home"),
+            ),
           ],
         ),
       ),

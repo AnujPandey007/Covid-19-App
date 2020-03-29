@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/note/note_list.dart';
+import 'package:hello_world/zcorona/home.dart';
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -20,67 +22,44 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  int selecteditem=0;
+  var pagecontroller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Drag"),
+        title: Text("Demo"),
       ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.green
-            ),
-          ),
-          DraggableScrollableSheet( //Screen size is assumed as 1.0
-            maxChildSize: 0.6,    //How much it will go up
-            minChildSize: 0.10,   //how much it will go down
-            builder: (context, scrollcontroller) {
-              return Stack(
-                overflow: Overflow.visible,  // To make the button overflow
-                children: <Widget>[
-                  Container(
-                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(40), topLeft: Radius.circular(40)),
-                    ),
-                    child: ListView.builder(
-                      controller: scrollcontroller,
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(
-                            "Task No $index", 
-                            style: TextStyle(color: Colors.grey[900], 
-                            fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            "This is the detail of task No $index", 
-                            style: TextStyle(color: Colors.grey[700]),
-                          ),
-                          trailing: Icon(Icons.check_circle, color: Colors.greenAccent),
-                          isThreeLine: true,
-                        );
-                      },
-                    ),
-                  ),
-                  Positioned(
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      child: Icon(Icons.add, color: Colors.white,),
-                      backgroundColor: Colors.pinkAccent,
-                    ),
-                    top: -30,
-                    right: 30,
-                  ),
-                ],
-              );
-            },
-          ),
+      body: PageView(
+        children: <Widget>[       //Do not enter the name of this* class i.e., here its HomePage
+          Home(),
+          NoteList()
         ],
+        onPageChanged: (index) {
+          setState(() {
+            selecteditem = index;
+          });
+        },
+        controller: pagecontroller,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[        //Must Fill both the icon and title down here
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),       
+          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("Settings")),
+        ],
+        currentIndex: selecteditem,
+        onTap: (index) {
+          setState(() {
+            selecteditem = index;
+            pagecontroller.animateToPage(
+              selecteditem, 
+              duration: Duration(milliseconds: 200), 
+              curve: Curves.linear
+            );
+          });
+        },
       ),
     );
   }
