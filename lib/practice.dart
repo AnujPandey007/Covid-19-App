@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -16,117 +13,74 @@ class Myapp4 extends StatelessWidget {
   }
 }
 
-class Note {
-  String title;
-  String text;
-  
-  Note(this.title, this.text);
-
-  Note.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    text = json['text'];
-  }
-}
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  List<Note> _notes = List<Note>();
-  List<Note> _notesForDisplay = List<Note>();
-
-  Future<List<Note>> fetchNotes() async {
-    var url = 'https://raw.githubusercontent.com/boriszv/json/master/random_example.json';
-    var response = await http.get(url);
-    
-    var notes = List<Note>();
-    
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-      for (var noteJson in notesJson) {
-        notes.add(Note.fromJson(noteJson));
-      }
-    }
-    return notes;
-  }
-
-  @override
-  void initState() {
-    fetchNotes().then((value) {
-      setState(() {
-        _notes.addAll(value);
-        _notesForDisplay = _notes;
-      });
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter listview with json'),
+        title: Text("Drag"),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return index == 0 ? _searchBar() : _listItem(index-1);
-        },
-        itemCount: _notesForDisplay.length+1,
-      )
-    );
-  }
-
-  _searchBar() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Search...'
-        ),
-        onChanged: (text) {
-          text = text.toLowerCase();
-          setState(() {
-            _notesForDisplay = _notes.where((note) {
-              var noteTitle = note.title.toLowerCase();
-              return noteTitle.contains(text);
-            }).toList();
-          });
-        },
-      ),
-    );
-  }
-
-  _listItem(index) {
-    return InkWell(
-      onTap: () {
-        print("Tapped");
-      },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 32.0, bottom: 32.0, left: 16.0, right: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                _notesForDisplay[index].title,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                _notesForDisplay[index].text,
-                style: TextStyle(
-                  color: Colors.grey.shade600
-                ),
-              ),
-            ],
+      body: Stack(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.green
+            ),
           ),
-        ),
+          DraggableScrollableSheet( //Screen size is assumed as 1.0
+            maxChildSize: 0.6,    //How much it will go up
+            minChildSize: 0.10,   //how much it will go down
+            builder: (context, scrollcontroller) {
+              return Stack(
+                overflow: Overflow.visible,  // To make the button overflow
+                children: <Widget>[
+                  Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(40), topLeft: Radius.circular(40)),
+                    ),
+                    child: ListView.builder(
+                      controller: scrollcontroller,
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(
+                            "Task No $index", 
+                            style: TextStyle(color: Colors.grey[900], 
+                            fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            "This is the detail of task No $index", 
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                          trailing: Icon(Icons.check_circle, color: Colors.greenAccent),
+                          isThreeLine: true,
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    child: FloatingActionButton(
+                      onPressed: () {},
+                      child: Icon(Icons.add, color: Colors.white,),
+                      backgroundColor: Colors.pinkAccent,
+                    ),
+                    top: -30,
+                    right: 30,
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
     );
   }
