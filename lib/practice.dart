@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/note/note_list.dart';
-import 'package:hello_world/zcorona/home.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Myapp4 extends StatelessWidget {
   @override
@@ -22,9 +21,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  int selecteditem=0;
-  var pagecontroller = PageController();
+
+  String phoneno = "6291523662";
+
+  _launchURL() async {
+
+  const url = "https://innovate.mygov.in/";
+
+  if (await canLaunch(url)) {
+
+    await launch(url);
+
+  } else {
+
+    throw 'Could not launch $url';
+
+    }
+
+  }
+
+  Future <void> _makephonecall (String url) async{
+
+    if(await canLaunch(url)){
+
+      await launch(url);
+
+    }else{
+      
+      throw "Could Not launch $url";
+
+    }
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,35 +62,25 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Demo"),
       ),
-      body: PageView(
-        children: <Widget>[       //Do not enter the name of this* class i.e., here its HomePage
-          Home(),
-          NoteList()
-        ],
-        onPageChanged: (index) {
-          setState(() {
-            selecteditem = index;
-          });
+      body: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              _launchURL();
+            },
+            child: Text("Click to Go To URL "),
+          ),
+          RaisedButton(
+        onPressed: () {
+          _makephonecall("tel: $phoneno");
         },
-        controller: pagecontroller,
+        child: Text("Click to Go To Phone"),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[        //Must Fill both the icon and title down here
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),       
-          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("Settings")),
         ],
-        currentIndex: selecteditem,
-        onTap: (index) {
-          setState(() {
-            selecteditem = index;
-            pagecontroller.animateToPage(
-              selecteditem, 
-              duration: Duration(milliseconds: 200), 
-              curve: Curves.linear
-            );
-          });
-        },
       ),
+      
     );
   }
+
+
 }
