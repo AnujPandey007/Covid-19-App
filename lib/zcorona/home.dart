@@ -56,12 +56,34 @@ class _HomeState extends State<Home> {
         ),
         bottomNavigationBar: BottomAppBar(
           clipBehavior: Clip.antiAlias,
-          notchMargin: 4.5,
+          notchMargin: 3.5,
           shape: CircularNotchedRectangle(),
           child: BottomNavigationBar(
             items: <BottomNavigationBarItem>[        //Must Fill both the icon and title down here
-              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),       
-              BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("Settings")),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ), 
+                title: Text(
+                  "INDIA",
+                  style: TextStyle(
+                    color: Colors.black
+                  ),
+                )
+              ),       
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.black,
+                ), 
+                title: Text(
+                  "STATES",
+                  style: TextStyle(
+                    color: Colors.black
+                  ),
+                )
+              ),
             ],
             currentIndex: selecteditem,
             onTap: (index) {
@@ -77,8 +99,12 @@ class _HomeState extends State<Home> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          tooltip: "New Note", 
-          child: Icon(Icons.add),
+          backgroundColor: Colors.grey[350],
+          tooltip: "Important Notes", 
+          child: Icon(
+            Icons.add,
+            color: Colors.black
+          ),
           onPressed: () {},
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

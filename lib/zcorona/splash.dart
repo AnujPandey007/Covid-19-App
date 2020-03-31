@@ -9,7 +9,7 @@ class Myapp4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes:{
-        "/home":(context)=>Home()
+        "/home":(context)=>Home(),
       },
       title: "OnBorading",
       debugShowCheckedModeBanner: false,
