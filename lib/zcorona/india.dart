@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
-import 'package:hello_world/app_screen/FadeAnimation.dart';
+import 'package:hello_world/zcorona/FadeAnimation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class India extends StatefulWidget {

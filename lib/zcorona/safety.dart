@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:hello_world/app_screen/FadeAnimation.dart';
+import 'package:hello_world/zcorona/FadeAnimation.dart';
 
 class Safety extends StatefulWidget {
   @override

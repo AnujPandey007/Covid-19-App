@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/app_screen/FadeAnimation.dart';
+import 'package:hello_world/zcorona/FadeAnimation.dart';
 import 'dart:async';
 import 'package:hello_world/zcorona/home.dart';
 import 'package:introduction_screen/introduction_screen.dart';

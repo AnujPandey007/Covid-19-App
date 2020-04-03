@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hello_world/app_screen/FadeAnimation.dart';
+import 'package:hello_world/zcorona/FadeAnimation.dart';
 import 'package:hello_world/zcorona/district.dart';
 import 'package:hello_world/zcorona/home2.dart';
 import 'package:http/http.dart';
