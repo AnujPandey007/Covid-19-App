@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/zcorona/india.dart';
+import 'package:hello_world/zcorona/safety.dart';
 import 'package:hello_world/zcorona/states.dart';
-
+import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,20 +11,46 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  Future<bool> data() {
+  Future<bool> backpressed() {
     return showDialog(
       context: context,
       builder: (context)=> AlertDialog(
-        title: Text("Do you really want to exit?"),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0)
+        ),
+        title: Text(
+          "Do you really want to exit?",
+          style: TextStyle(
+            fontSize: 15.0
+          ),
+        ),
         actions: <Widget>[
-          FlatButton(
-            child: Text("Yes"),
+          MaterialButton(
+            shape: StadiumBorder(),
+            elevation: 1.0,
+            color: Colors.white,
+            child: Text(
+              "Yes",
+              style: TextStyle(
+                color: Colors.blue
+              ),
+            ),
+            splashColor: Colors.blue[100],
             onPressed: () {
               Navigator.pop(context,true);
             },
           ),
-          FlatButton(
-            child: Text("No"),
+          MaterialButton(
+            shape: StadiumBorder(),
+            elevation: 3.0,
+            color: Colors.white,
+            child: Text(
+              "No",
+              style: TextStyle(
+                color: Colors.blue
+              ),
+            ),
+            splashColor: Colors.blue[100],
             onPressed: () {
               Navigator.pop(context,false);  //if its true then it will exit
             },
@@ -38,10 +65,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        return data();
+        return backpressed();
       },
       child: Scaffold(
-        extendBody: true,
+        backgroundColor: Colors.white,
         body: PageView(
           children: <Widget>[       
             India(),
@@ -58,7 +85,9 @@ class _HomeState extends State<Home> {
           clipBehavior: Clip.antiAlias,
           notchMargin: 3.5,
           shape: CircularNotchedRectangle(),
-          child: BottomNavigationBar(
+          child: GradientBottomNavigationBar(
+            backgroundColorStart: Colors.white,
+            backgroundColorEnd: Colors.white,
             items: <BottomNavigationBarItem>[        //Must Fill both the icon and title down here
               BottomNavigationBarItem(
                 icon: Icon(
@@ -74,7 +103,7 @@ class _HomeState extends State<Home> {
               ),       
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.settings,
+                  Icons.place,
                   color: Colors.black,
                 ), 
                 title: Text(
@@ -99,13 +128,15 @@ class _HomeState extends State<Home> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.grey[350],
-          tooltip: "Important Notes", 
+          backgroundColor: Colors.white,
+          tooltip: "Help", 
           child: Icon(
-            Icons.add,
+            Icons.help,
             color: Colors.black
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> Safety()));
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       )

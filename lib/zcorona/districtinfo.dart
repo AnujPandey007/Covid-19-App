@@ -9,7 +9,9 @@ class _DistrictinfoState extends State<Districtinfo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text("Info"),)
+      child: Center(
+        child: Text("Info"),
+      )
     );
   }
 }

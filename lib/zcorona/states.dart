@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hello_world/app_screen/FadeAnimation.dart';
+import 'package:hello_world/zcorona/district.dart';
 import 'package:hello_world/zcorona/home2.dart';
 import 'package:http/http.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -32,9 +33,9 @@ class _StatesofindiaState extends State<Statesofindia> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: data == null ? 0 : data.length-1,
+      itemCount: data==null?0:data.length-1,
       itemBuilder: (BuildContext context, int index) {
-        if (data == null){
+        if (data==null){
           return loading();
         }else{
           return statesPage(index);
@@ -49,7 +50,7 @@ class _StatesofindiaState extends State<Statesofindia> {
         child: Card(
           child: ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Home2()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> District(val:data[index+1])));
             },
             title: Text(
               (data[index+1]["state"]),

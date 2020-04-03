@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/zcorona/district.dart';
 import 'package:hello_world/zcorona/districtinfo.dart';
-
+import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
 class Home2 extends StatefulWidget {
+
+  Map data;
+  Home2({Key key, @required this.data}):super(key:key);
+
   @override
-  _Home2State createState() => _Home2State();
+  _Home2State createState() => _Home2State(val:data);
 }
 
 class _Home2State extends State<Home2> {
+
+  Map val;
+  _Home2State({this.val});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,7 @@ class _Home2State extends State<Home2> {
       extendBody: true,
       body: PageView(
         children: <Widget>[       
-          District(),
+          District(val: val),
           Districtinfo()
         ],
         onPageChanged: (index) {
@@ -30,30 +37,31 @@ class _Home2State extends State<Home2> {
         clipBehavior: Clip.antiAlias,
         notchMargin: 3.5,
         shape: CircularNotchedRectangle(),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.grey[200],
+        child: GradientBottomNavigationBar(
+          backgroundColorStart: Colors.white,
+          backgroundColorEnd: Colors.white,
           items: <BottomNavigationBarItem>[        //Must Fill both the icon and title down here
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: Colors.black,
+                color: Colors.white70,
               ), 
               title: Text(
                 "STATES",
                 style: TextStyle(
-                  color: Colors.black
+                  color: Colors.white
                 ),
               )
             ),       
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.settings,
-                color: Colors.black,
+                Icons.place,
+                color: Colors.white70,
               ), 
               title: Text(
                 "DISTRICT",
                 style: TextStyle(
-                  color: Colors.black
+                  color: Colors.white
                 ),
               )
             ),
@@ -72,10 +80,10 @@ class _Home2State extends State<Home2> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey[350],
+        backgroundColor: Colors.white,
         tooltip: "Important Notes", 
         child: Icon(
-          Icons.add,
+          Icons.add, 
           color: Colors.black
         ),
         onPressed: () {},

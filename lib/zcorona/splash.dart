@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/app_screen/FadeAnimation.dart';
 import 'dart:async';
 import 'package:hello_world/zcorona/home.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -11,7 +12,7 @@ class Myapp4 extends StatelessWidget {
       routes:{
         "/home":(context)=>Home(),
       },
-      title: "OnBorading",
+      title: "COVID-19 INDIA",
       debugShowCheckedModeBanner: false,
       home: SplashScreen()
     );
@@ -55,17 +56,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Container(
-        child: Center(
-          child: Text(
-            "Quiz\nTest Yourself",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40.0,
-              color: Colors.white
-            ),
-          ),
+      backgroundColor: Colors.white,
+      body: FadeAnimation(0.0,
+        Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Image.asset("assets/Images/33.png"),
+              Text(
+                "COVID-19\nINDIA",
+                style: TextStyle(
+                  fontSize: 60.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange
+                ),
+              )
+            ],
+          )
         ),
       ),
     );
@@ -91,38 +99,38 @@ class _IntroductionPageState extends State<IntroductionPage> {
   List<PageViewModel> getPages() {
     return [
       PageViewModel(
-        //image: Image.asset("assets/images/online_Ad.png"),
-        title: "Online Ads",
-        body: "This is an online ad.",
+        image: Image.asset("assets/Images/76.png"),
+        title: "Avoid touching eyes, nose and mouth",
+        body: "Wash your hands always with soap and water, Thus keeping the virus away.",
         footer: Text(
-          "MTECHVIRAL",
+          "Why? Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.",
           style: TextStyle(color: Colors.black),
         ),
       ),
       PageViewModel(
-        //image: Image.asset("assets/images/online_article.png"),
-        title: "Online Article",
-        body: "This is an online article.",
+        image: Image.asset("assets/Images/77.png"),
+        title: "Social Distancing",
+        body: "Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.",
         footer: Text(
-          "MTECHVIRAL",
+          "Why? When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.",
           style: TextStyle(color: Colors.black),
         ),
       ),
       PageViewModel(
-        //image: Image.asset("assets/images/website.png"),
-        title: "Html & CSS",
-        body: "This is an online course where you can learn html & css",
+        image: Image.asset("assets/Images/78.png"),
+        title: "Stay at home",
+        body: "Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover.",
         footer: Text(
-          "MTECHVIRAL",
+          "Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.",
           style: TextStyle(color: Colors.black),
         ),
       ),
       PageViewModel(
-        //image: Image.asset("assets/images/shared_workspace.png"),
-        title: "Workspace",
-        body: "Want a workspace? Then check it out.",
+        image: Image.asset("assets/Images/79.png"),
+        title: "Increase immunity",
+        body: "Increase immunity by doing Yoga, Eat more fermented foods or take a probiotic supplement, Get enough sleep etc..",
         footer: Text(
-          "MTECHVIRAL",
+          "Why? People can help their immune systems by washing their hands regularly to prevent infections, eating nutritious foods, getting plenty of exercise, getting enough sleep, and getting regular medical checkups.",
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -137,14 +145,19 @@ class _IntroductionPageState extends State<IntroductionPage> {
           globalBackgroundColor: Colors.white,
           pages: getPages(),
           done: Text(
-            "Done",
-            style: TextStyle(color: Colors.black),
+            "Done", 
+            style: TextStyle(color: Colors.blue),
           ),
           onDone: () {
             return nextpage(context);
           },
           showSkipButton: true,
-          skip: const Text("Skip"),
+          skip: Text(
+            "Skip",
+            style: TextStyle(
+              color: Colors.blue
+            ),
+          ),
           onSkip: () {
             return nextpage(context);
           },
