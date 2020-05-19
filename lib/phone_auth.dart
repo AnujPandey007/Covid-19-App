@@ -10,7 +10,7 @@ class PhoneLogin extends StatefulWidget {
 
 class _PhoneLoginState extends State<PhoneLogin> {
   final TextEditingController _phoneNumberController = TextEditingController();
-
+ 
   bool isValid = false;
 
   Future<Null> validate(StateSetter updateState) async {

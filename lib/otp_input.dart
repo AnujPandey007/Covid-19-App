@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum PinEntryType { underline, boxTight, boxLoose }
+enum PinEntryType { underline, boxTight, boxLoose } 
 
 abstract class PinDecoration {
   /// The style of painting text.
