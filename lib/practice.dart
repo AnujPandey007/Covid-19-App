@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Demo",
+    return MaterialApp( 
+      title: "Trial",
       debugShowCheckedModeBanner: false,
       home: Page(),
     );
