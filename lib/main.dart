@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/practice.dart';
-
-void main() => runApp(Myapp());
+import 'package:hello_world/app.dart';
+void main() => runApp(App());
 
 

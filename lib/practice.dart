@@ -6,31 +6,22 @@ class Myapp extends StatelessWidget {
     return MaterialApp( 
       title: "Trial",
       debugShowCheckedModeBanner: false,
-      home: Page(),
+      home: MyHomePage(),
     );
   }
 }
 
-class Page extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _PageState createState() => _PageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _PageState extends State<Page> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "App Bar",
-          style: TextStyle(
-            fontStyle: FontStyle.italic
-          ),
-        ),
-      ),
-      body: Container(
-        
-      ),
+    return Container(
+      
     );
   }
 }
+
