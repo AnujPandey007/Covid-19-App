@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/app.dart';
-void main() => runApp(App());
+import 'package:hello_world/zcorona/splash.dart';
 
 
+void main() => runApp(Myapp4());
+ 
