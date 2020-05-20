@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/zcorona/district.dart';
-import 'package:hello_world/zcorona/districtinfo.dart';
+import 'package:hello_world/district.dart';
+import 'package:hello_world/districtinfo.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
 class Home2 extends StatefulWidget {

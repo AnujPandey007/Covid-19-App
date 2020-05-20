@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/zcorona/FadeAnimation.dart';
+import 'package:hello_world/FadeAnimation.dart';
 import 'dart:async';
-import 'package:hello_world/zcorona/home.dart';
+import 'package:hello_world/home.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Myapp4 extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return MaterialApp(
       routes:{
         "/home":(context)=>Home(),

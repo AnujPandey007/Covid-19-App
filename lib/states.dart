@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hello_world/zcorona/FadeAnimation.dart';
-import 'package:hello_world/zcorona/district.dart';
-import 'package:hello_world/zcorona/home2.dart';
+import 'package:hello_world/FadeAnimation.dart';
+import 'package:hello_world/district.dart';
 import 'package:http/http.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Statesofindia extends StatefulWidget {
   @override
-  _StatesofindiaState createState() => _StatesofindiaState();
+  _StatesofindiaState createState() => _StatesofindiaState(); 
 }
 
 class _StatesofindiaState extends State<Statesofindia> {

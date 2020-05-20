@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/zcorona/india.dart';
-import 'package:hello_world/zcorona/safety.dart';
-import 'package:hello_world/zcorona/states.dart';
+import 'package:hello_world/india.dart';
+import 'package:hello_world/safety.dart';
+import 'package:hello_world/states.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
 class Home extends StatefulWidget {

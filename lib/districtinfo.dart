@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Districtinfo extends StatefulWidget {
   @override
-  _DistrictinfoState createState() => _DistrictinfoState();
+  _DistrictinfoState createState() => _DistrictinfoState(); 
 }
 
 class _DistrictinfoState extends State<Districtinfo> {

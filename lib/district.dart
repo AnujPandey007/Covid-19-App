@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/zcorona/FadeAnimation.dart';
+import 'package:hello_world/FadeAnimation.dart';
 
-class District extends StatefulWidget {
+class District extends StatefulWidget { 
 
   Map val;
   

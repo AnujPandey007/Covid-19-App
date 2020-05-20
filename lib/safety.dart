@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:hello_world/zcorona/FadeAnimation.dart';
+import 'package:hello_world/FadeAnimation.dart';
 
 class Safety extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class Safety extends StatefulWidget {
 }
 
 class _SafetyState extends State<Safety> {
-
+ 
   _launchURL1() async {
 
   const url = "https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf";
